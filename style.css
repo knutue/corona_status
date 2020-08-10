@@ -1,0 +1,22 @@
+#chart-one {
+    height: 50%;
+    width: 75%;
+    margin: 0 auto;
+    float: left;
+  }
+
+#new, #total {
+    display: block;
+    text-align: right;
+    font-family: "Helvetica";
+    font-size: 4em;
+    margin: 50px auto;
+    padding: 0.5em;
+
+}
+
+.column {
+    float: left;
+    width: 50%;
+
+}
