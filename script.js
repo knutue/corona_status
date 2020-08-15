@@ -6,6 +6,8 @@ const fetchParams = {
 
 const urlCountries = "https://api.covid19api.com/countries";
 
+changeCountry('Norway');
+
 fetch(urlCountries, fetchParams)
     .then(res => {
         if(!res.ok){
@@ -27,16 +29,15 @@ fetch(urlCountries, fetchParams)
             opt.value = name;
             document.getElementById("dropdown").appendChild(opt)
         }
-        console.log(countryList)
+        
     })
     .catch(err => {
-        console.log("Error fetching data")
+        console.log("Error fetching list of countries")
     })
 
-function changeCountry() {
-    const queryCountry = document.getElementById("dropdown").value;
+function changeCountry(country) {
 
-    const urlHist = "https://api.covid19api.com/dayone/country/" + queryCountry.toLowerCase() +"/status/confirmed";
+    const urlHist = "https://api.covid19api.com/dayone/country/" + country.toLowerCase() +"/status/confirmed";
     const urlStatus = "https://api.covid19api.com/summary"
     
     fetch(urlHist, fetchParams)
@@ -83,6 +84,9 @@ function changeCountry() {
                 height: "20%",
                 width: "100%"
             });
+        })
+        .catch(err => {
+            console.log("Error generating graph")
         })  
     
     
@@ -95,14 +99,18 @@ function changeCountry() {
         })
         .then(data => {
             const filtered = data.Countries.filter(function(item){
-                return item.Country == queryCountry
+                return item.Country == country
             });
             console.log(filtered[0].Country);
             const newConfirmed = filtered[0].NewConfirmed
             const totalConfirmed = filtered[0].TotalConfirmed
             console.log(newConfirmed, totalConfirmed)
-            document.getElementById("new").innerHTML = newConfirmed + " nye"
-            document.getElementById("total").innerHTML = totalConfirmed + " totalt"
+            document.getElementById("new").innerHTML = newConfirmed + " new case"
+            document.getElementById("total").innerHTML = totalConfirmed + " in total"
+            document.getElementById("country").innerHTML = "Confirmed number of infected in " + country
+        })
+        .catch(err => {
+            console.log("Error fetching current status")
         })
 }
 

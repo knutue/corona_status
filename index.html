@@ -3,22 +3,48 @@
 <html>
     <header>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <title>Corona-status</title>
 
     </header>
 
     <body>
-        <select id="dropdown"></select>
-        <button type="button" onclick="changeCountry()">Skift land</button>
-        <div class="column">
-            <div id="new"></div>
-            <div id="total"></div>
-        </div>
-        <div class="column">
-            <div id="chart-one"></div>
-        </div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h1 id= "country" class="text-center"></h1>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col">
+                    <div class="row align-items-center">
+                        <div id="new" class="display-3"></div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div id="total" class="display-3"></div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="chart-one"></div>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <select id="dropdown" class="custom-select"></select> 
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-primary btn-block" onclick="changeCountry(document.getElementById('dropdown').value)">Change country</button>
+                            </div>
+                        </div>
+                </div>
 
+                <div class="col">
+                    <p class="text-right">Source: covid19api.com</p>
+                </div>
+            </div>
+        </div>
 
         <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
         <script src="script.js"></script>
@@ -26,7 +52,5 @@
 
     </body>
 
-    <footer>
-        <p>Source: covid19api.com</p>
-    </footer>
+
 </html>
